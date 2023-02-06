@@ -16,7 +16,7 @@ namespace WebApi
         }
 
         [Function("Function1")]
-        public void Run([TimerTrigger("0 */5 * * * *")] MyInfo myTimer)
+        public void Run([TimerTrigger("*/5 * * * * *")] MyInfo myTimer)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus?.Next}");
