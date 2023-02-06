@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessTests", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{11DE5532-2B5D-41A3-8BEB-DAC1EFD32303}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWasmClient", "MyWasmClient\MyWasmClient.csproj", "{2DE66523-86CE-4205-96B5-DFE3670627D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{11DE5532-2B5D-41A3-8BEB-DAC1EFD32303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11DE5532-2B5D-41A3-8BEB-DAC1EFD32303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11DE5532-2B5D-41A3-8BEB-DAC1EFD32303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE66523-86CE-4205-96B5-DFE3670627D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE66523-86CE-4205-96B5-DFE3670627D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE66523-86CE-4205-96B5-DFE3670627D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE66523-86CE-4205-96B5-DFE3670627D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
