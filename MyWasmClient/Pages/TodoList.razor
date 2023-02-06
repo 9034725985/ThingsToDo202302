@@ -1,0 +1,39 @@
+﻿@page "/todo"
+@inject HttpClient Http
+
+<PageTitle>My to do list</PageTitle>
+
+<h1>Things to do</h1>
+
+@if (items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private DataAccess.Model.MyTodoItem[]? items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await Http.GetFromJsonAsync<DataAccess.Model.MyTodoItem[]>("http://localhost:7142/api/MyFirstHttpFunction");
+        Console.WriteLine(items?.FirstOrDefault()?.Title);
+    }
+}
