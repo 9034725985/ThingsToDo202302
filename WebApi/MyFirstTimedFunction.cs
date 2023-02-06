@@ -20,7 +20,7 @@ namespace WebApi
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus?.Next}");
-            DapperDataAccess access = new(_connectionString, logger);
+            //DapperDataAccess access = new(_connectionString, logger);
         }
     }
 
