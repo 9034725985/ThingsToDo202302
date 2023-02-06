@@ -18,12 +18,11 @@ namespace WebApi
             _logger = loggerFactory.CreateLogger<MyFirstTimedFunction>();
             var builder = new ConfigurationBuilder()
             .AddUserSecrets<MyFirstTimedFunction>();
-
             Configuration = builder.Build();
         }
 
         [Function("MyFirstTimedFunction")]
-        public async Task Run([TimerTrigger("*/5 * * * * *")] MyInfo myTimer, CancellationToken cancellationToken)
+        public async Task Run([TimerTrigger("45 */5 * * * *")] MyInfo myTimer, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus?.Next}");
