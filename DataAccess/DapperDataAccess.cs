@@ -14,9 +14,9 @@ namespace DataAccess
     {
         //private readonly string _connectionString = "Host=hansken.db.elephantsql.com;Database=xrbmpoui;User Id=xrbmpoui;Password=i38x7v1O3aNteoNxteJNB5thtPfKqqxn;";
         private readonly string _connectionString;
-        private readonly ILogger<DapperDataAccess> _logger;
+        private readonly ILogger _logger;
 
-        public DapperDataAccess(string connectionString, ILogger<DapperDataAccess> logger)
+        public DapperDataAccess(string connectionString, ILogger logger)
         {
             _connectionString = connectionString;
             _logger = logger;

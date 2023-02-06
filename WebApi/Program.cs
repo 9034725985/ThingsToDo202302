@@ -4,25 +4,23 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 
 
-// https://github.com/Azure/azure-functions-core-tools/issues/2413#issuecomment-1260415071
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
+    .ConfigureAppConfiguration(builder =>
+    {
+        builder.AddConfiguration(GetConfigurationBuilder());
+    })
     .ConfigureServices((appBuilder, services) =>
     {
-        // Use Serilog for logging.
-        // Serilog is configured via Env Vars .. which is
-        //   => Localhost: local.settings.json
-        //   => Azure Functions on Azure: the 'Configuration' tab/section/page
         var logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(appBuilder.Configuration) // <-- This is the magic, here!
+            .ReadFrom.Configuration(appBuilder.Configuration)
             .Enrich.FromLogContext()
             .CreateLogger();
         services.AddLogging(configure => configure.AddSerilog(logger, true));
 
         // Setup our configuration settings.
-        // Just a strongly typed class.
         //services
-        //    //.AddOptions<ConnectionStringOptions>()
+        //    .AddOptions<ConnectionStringOptions>()
         //    .Configure<IConfiguration>((settings, configuration) =>
         //    {
         //        configuration
@@ -30,10 +28,18 @@ var host = new HostBuilder()
         //            .Bind(settings);
         //    });
 
-        // DapperRepository requires an instance of an IOptions<ConnectionStringOptions> class
-        // in the ctor .. which is why that is registered, above.
         //services.AddSingleton<IRepository, DapperRepository>();
     })
     .Build();
 
+
 host.Run();
+
+
+// Strongly based off/from: https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.host.createdefaultbuilder?view=dotnet-plat-ext-5.0
+static IConfiguration GetConfigurationBuilder() =>
+    new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddUserSecrets<Program>()
+        .AddEnvironmentVariables()
+        .Build();
