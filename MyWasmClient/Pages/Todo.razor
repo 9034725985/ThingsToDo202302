@@ -1,4 +1,7 @@
 ﻿@page "/todo"
+@using System.Text.Json;
+@using DataAccess.Model;
+@using Newtonsoft.Json;
 @inject HttpClient Http
 
 <PageTitle>My to do list</PageTitle>
@@ -33,7 +36,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        items = await Http.GetFromJsonAsync<DataAccess.Model.MyTodoItem[]>("http://localhost:7142/api/MyFirstHttpFunction");
+        JsonElement itemJsonElement = await Http.GetFromJsonAsync<JsonElement>("http://localhost:7142/api/MyFirstHttpFunction");
+        string itemJsonString = itemJsonElement.ToString();
+        items = JsonConvert.DeserializeObject<MyTodoItem[]>(itemJsonString);
         Console.WriteLine(items?.FirstOrDefault()?.Title);
     }
 }
