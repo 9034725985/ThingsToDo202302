@@ -36,7 +36,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        JsonElement itemJsonElement = await Http.GetFromJsonAsync<JsonElement>("http://localhost:7142/api/MyFirstHttpFunction");
+        //JsonElement itemJsonElement = await Http.GetFromJsonAsync<JsonElement>("http://localhost:7142/api/MyFirstHttpFunction");
+        JsonElement itemJsonElement = await Http.GetFromJsonAsync<JsonElement>("https://apimocha.com/dallas/todo");
         string itemJsonString = itemJsonElement.ToString();
         items = JsonConvert.DeserializeObject<MyTodoItem[]>(itemJsonString);
         Console.WriteLine(items?.FirstOrDefault()?.Title);
